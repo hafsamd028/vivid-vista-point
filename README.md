@@ -1,29 +1,45 @@
-# Welcome to your Lovable project
+# BhuRakshak Frontend
 
-This project was built with [Lovable](https://lovable.dev).
+A frontend-only React interface for digitizing and validating land records. It includes mock authentication, dashboard analytics, document upload, OCR review, record search, supervisor review, audit history, user management, and profile preferences. All data and operations are simulated in the browser; no backend or database is included.
 
-## Build with Lovable
+## Install
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+```bash
+bun install
 ```
 
-## Built with
+You can also use `npm install`.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Start development
+
+```bash
+bun run dev
+```
+
+Open the local URL printed by Vite.
+
+## Build
+
+```bash
+bun run build
+```
+
+## Environment variables
+
+Copy `.env.example` to `.env` when connecting a future API. The current mock frontend needs no environment variables.
+
+## Main folders
+
+- `src/components/` — reusable interface components
+- `src/pages/` — complete screens
+- `src/routes/` — URL routing and page metadata
+- `src/data/` — realistic mock records, users, and dashboard data
+- `src/services/` — mock asynchronous services ready to replace with API calls
+- `src/types/` — shared TypeScript domain types
+- `src/assets/` — generated sample scan and district coverage artwork
+
+## Demo notes
+
+- The sign-in screen accepts any valid email and password with six or more characters.
+- Upload, extraction, approval, rejection, invitations, and profile saves are frontend simulations.
+- Uploaded files never leave the browser.
