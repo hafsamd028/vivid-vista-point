@@ -10,33 +10,185 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuditRouteImport } from './routes/audit'
+import { Route as FlaggedRouteImport } from './routes/flagged'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RecordsRouteImport } from './routes/records'
+import { Route as ReviewRouteImport } from './routes/review'
+import { Route as UploadRouteImport } from './routes/upload'
+import { Route as UsersRouteImport } from './routes/users'
+import { Route as RecordsIndexRouteImport } from './routes/records.index'
+import { Route as RecordsRecordIdRouteImport } from './routes/records.$recordId'
+import { Route as ReviewIndexRouteImport } from './routes/review.index'
+import { Route as ReviewRecordIdRouteImport } from './routes/review.$recordId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlaggedRoute = FlaggedRouteImport.update({
+  id: '/flagged',
+  path: '/flagged',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecordsRoute = RecordsRouteImport.update({
+  id: '/records',
+  path: '/records',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersRoute = UsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecordsIndexRoute = RecordsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RecordsRoute,
+} as any)
+const RecordsRecordIdRoute = RecordsRecordIdRouteImport.update({
+  id: '/$recordId',
+  path: '/$recordId',
+  getParentRoute: () => RecordsRoute,
+} as any)
+const ReviewIndexRoute = ReviewIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ReviewRoute,
+} as any)
+const ReviewRecordIdRoute = ReviewRecordIdRouteImport.update({
+  id: '/$recordId',
+  path: '/$recordId',
+  getParentRoute: () => ReviewRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/flagged': typeof FlaggedRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/records': typeof RecordsRouteWithChildren
+  '/review': typeof ReviewRouteWithChildren
+  '/upload': typeof UploadRoute
+  '/users': typeof UsersRoute
+  '/records/$recordId': typeof RecordsRecordIdRoute
+  '/review/$recordId': typeof ReviewRecordIdRoute
+  '/records/': typeof RecordsIndexRoute
+  '/review/': typeof ReviewIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/flagged': typeof FlaggedRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/upload': typeof UploadRoute
+  '/users': typeof UsersRoute
+  '/records/$recordId': typeof RecordsRecordIdRoute
+  '/review/$recordId': typeof ReviewRecordIdRoute
+  '/records': typeof RecordsIndexRoute
+  '/review': typeof ReviewIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/flagged': typeof FlaggedRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/records': typeof RecordsRouteWithChildren
+  '/review': typeof ReviewRouteWithChildren
+  '/upload': typeof UploadRoute
+  '/users': typeof UsersRoute
+  '/records/$recordId': typeof RecordsRecordIdRoute
+  '/review/$recordId': typeof ReviewRecordIdRoute
+  '/records/': typeof RecordsIndexRoute
+  '/review/': typeof ReviewIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/audit'
+    | '/flagged'
+    | '/login'
+    | '/profile'
+    | '/records'
+    | '/review'
+    | '/upload'
+    | '/users'
+    | '/records/$recordId'
+    | '/review/$recordId'
+    | '/records/'
+    | '/review/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/audit'
+    | '/flagged'
+    | '/login'
+    | '/profile'
+    | '/upload'
+    | '/users'
+    | '/records/$recordId'
+    | '/review/$recordId'
+    | '/records'
+    | '/review'
+  id:
+    | '__root__'
+    | '/'
+    | '/audit'
+    | '/flagged'
+    | '/login'
+    | '/profile'
+    | '/records'
+    | '/review'
+    | '/upload'
+    | '/users'
+    | '/records/$recordId'
+    | '/review/$recordId'
+    | '/records/'
+    | '/review/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditRoute: typeof AuditRoute
+  FlaggedRoute: typeof FlaggedRoute
+  LoginRoute: typeof LoginRoute
+  ProfileRoute: typeof ProfileRoute
+  RecordsRoute: typeof RecordsRouteWithChildren
+  ReviewRoute: typeof ReviewRouteWithChildren
+  UploadRoute: typeof UploadRoute
+  UsersRoute: typeof UsersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +200,129 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flagged': {
+      id: '/flagged'
+      path: '/flagged'
+      fullPath: '/flagged'
+      preLoaderRoute: typeof FlaggedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/records': {
+      id: '/records'
+      path: '/records'
+      fullPath: '/records'
+      preLoaderRoute: typeof RecordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users': {
+      id: '/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/records/': {
+      id: '/records/'
+      path: '/'
+      fullPath: '/records/'
+      preLoaderRoute: typeof RecordsIndexRouteImport
+      parentRoute: typeof RecordsRoute
+    }
+    '/records/$recordId': {
+      id: '/records/$recordId'
+      path: '/$recordId'
+      fullPath: '/records/$recordId'
+      preLoaderRoute: typeof RecordsRecordIdRouteImport
+      parentRoute: typeof RecordsRoute
+    }
+    '/review/': {
+      id: '/review/'
+      path: '/'
+      fullPath: '/review/'
+      preLoaderRoute: typeof ReviewIndexRouteImport
+      parentRoute: typeof ReviewRoute
+    }
+    '/review/$recordId': {
+      id: '/review/$recordId'
+      path: '/$recordId'
+      fullPath: '/review/$recordId'
+      preLoaderRoute: typeof ReviewRecordIdRouteImport
+      parentRoute: typeof ReviewRoute
+    }
   }
 }
 
+interface RecordsRouteChildren {
+  RecordsRecordIdRoute: typeof RecordsRecordIdRoute
+  RecordsIndexRoute: typeof RecordsIndexRoute
+}
+
+const RecordsRouteChildren: RecordsRouteChildren = {
+  RecordsRecordIdRoute: RecordsRecordIdRoute,
+  RecordsIndexRoute: RecordsIndexRoute,
+}
+
+const RecordsRouteWithChildren =
+  RecordsRoute._addFileChildren(RecordsRouteChildren)
+
+interface ReviewRouteChildren {
+  ReviewRecordIdRoute: typeof ReviewRecordIdRoute
+  ReviewIndexRoute: typeof ReviewIndexRoute
+}
+
+const ReviewRouteChildren: ReviewRouteChildren = {
+  ReviewRecordIdRoute: ReviewRecordIdRoute,
+  ReviewIndexRoute: ReviewIndexRoute,
+}
+
+const ReviewRouteWithChildren =
+  ReviewRoute._addFileChildren(ReviewRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditRoute: AuditRoute,
+  FlaggedRoute: FlaggedRoute,
+  LoginRoute: LoginRoute,
+  ProfileRoute: ProfileRoute,
+  RecordsRoute: RecordsRouteWithChildren,
+  ReviewRoute: ReviewRouteWithChildren,
+  UploadRoute: UploadRoute,
+  UsersRoute: UsersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
